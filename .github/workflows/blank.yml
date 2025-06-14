@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clone external hello-world project
-        run: git clone https://github.com/fhinkel/nodejs-hello-world.git
-
+      - name: Checkout code from Repo 1
+        uses: actions/checkout@v4
+        
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
