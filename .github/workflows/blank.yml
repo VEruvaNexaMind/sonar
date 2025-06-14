@@ -1,4 +1,4 @@
-name: Build External Node.js Project
+name: Build External Node.js Project with SonarCloud
 
 on:
   push:
@@ -13,11 +13,6 @@ jobs:
       - name: Clone external hello-world project
         run: git clone https://github.com/fhinkel/nodejs-hello-world.git
 
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,11 +23,17 @@ jobs:
           cd nodejs-hello-world
           npm install
 
-      # Optional: Run the app or test
-      # - name: Run the app
-      #   run: |
-      #     cd nodejs-hello-world
-      #     npm start
+      - name: Run tests (optional)
+        run: |
+          cd nodejs-hello-world
+          npm test || echo "No tests available"
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: ./nodejs-hello-world
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Create output folder and copy files
         run: |
