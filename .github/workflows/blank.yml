@@ -11,9 +11,7 @@ jobs:
 
     steps:
       - name: Clone external hello-world project
-        run: |
-          git clone https://github.com/fhinkel/nodejs-hello-world.git
-          cd nodejs-hello-world
+        run: git clone https://github.com/fhinkel/nodejs-hello-world.git
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -25,15 +23,16 @@ jobs:
           cd nodejs-hello-world
           npm install
 
-      # - name: Run the app or test
+      # Optional: Run the app or test
+      # - name: Run the app
       #   run: |
       #     cd nodejs-hello-world
-      #     npm start  # or `npm test`
+      #     npm start
 
       - name: Create output folder and copy files
         run: |
           mkdir -p dist
-          cp -r * dist/
+          cp -r nodejs-hello-world/* dist/
 
       - name: Upload built package as artifact
         uses: actions/upload-artifact@v4
