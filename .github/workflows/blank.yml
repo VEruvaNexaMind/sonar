@@ -1,0 +1,31 @@
+name: Build External Node.js Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone external hello-world project
+        run: |
+          git clone https://github.com/fhinkel/nodejs-hello-world.git
+          cd nodejs-hello-world
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        run: |
+          cd nodejs-hello-world
+          npm install
+
+      - name: Run the app or test
+        run: |
+          cd nodejs-hello-world
+          npm start  # or `npm test`
