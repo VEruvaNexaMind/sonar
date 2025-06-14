@@ -25,7 +25,18 @@ jobs:
           cd nodejs-hello-world
           npm install
 
-      - name: Run the app or test
+      # - name: Run the app or test
+      #   run: |
+      #     cd nodejs-hello-world
+      #     npm start  # or `npm test`
+
+      - name: Create output folder and copy files
         run: |
-          cd nodejs-hello-world
-          npm start  # or `npm test`
+          mkdir -p dist
+          cp -r * dist/
+
+      - name: Upload built package as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nodejs-hello-world-artifact
+          path: dist
