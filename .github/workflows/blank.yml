@@ -13,6 +13,11 @@ jobs:
       - name: Clone external hello-world project
         run: git clone https://github.com/fhinkel/nodejs-hello-world.git
 
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
