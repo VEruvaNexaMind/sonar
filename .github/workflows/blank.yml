@@ -47,4 +47,4 @@ jobs:
           path: dist
           context: ./nodejs-hello-world
           push: true
-          tags: jatinbhalla1991/nodejs-hello-world:latest
+          tags: kiranveruva/nodejs-hello-world:latest
