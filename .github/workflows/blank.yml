@@ -3,7 +3,7 @@ name: Build External Node.js Project with SonarCloud and Docker
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
