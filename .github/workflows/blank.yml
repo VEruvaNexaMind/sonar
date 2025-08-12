@@ -47,4 +47,4 @@ jobs:
           path: dist
           context: ./nodejs-hello-world
           push: true
-          tags: kiraneruva9/nodejs-hello-world:latest
+          tags: kiraneruva/nodejs-hello-world:latest
