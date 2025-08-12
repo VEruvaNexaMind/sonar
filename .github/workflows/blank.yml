@@ -1,9 +1,7 @@
 name: Build External Node.js Project with SonarCloud and Docker
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   build:
